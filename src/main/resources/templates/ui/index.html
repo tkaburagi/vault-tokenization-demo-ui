@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http:///www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Nunito:700'
+          rel='stylesheet' type='text/css' />
+
+    <style type="text/css">
+        form {
+            margin: 0 auto;
+            width: 800px;
+        }
+
+        table {
+            width: 1500px;
+        }
+
+        div.ta0 {
+            text-align: left;
+            align-items: center;
+        }
+
+        div.ta1 {
+            text-align: center;
+        }
+
+        div.ta2 {
+            text-align: right;
+        }
+
+        div.ta3 {
+            text-align: justify;
+        }
+
+        .logo {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .button-success, .button-warning {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            width: 200px;
+        }
+
+        .button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+
+
+        .button-warning {
+            background: rgb(223, 117, 20); /* this is an orange */
+        }
+
+    </style>
+
+
+<meta charset="UTF-8" />
+<title>HashiCorp Vault Demo</title>
+</head>
+
+<body>
+<div class="ta1">
+    <h1 class="logo">HashiCorp Vault Tokenization Demo</h1>
+    <h1 class="logo">Happy Encryption!</h1>
+</div>
+
+<div class="ta1">
+    <h2 class="logo">Input Plain Data (Please Do not use real data!)</h2>
+</div>
+<!--<button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Sign in</button>-->
+<div align='center'>
+    <form class="pure-form"  th:method="post" th:action="@{/encrypt}" th:object="${user}">
+        <fieldset class="pure-group" >
+            <input name="username" type="text" class="pure-input-1-2" placeholder="Username">
+            <input name="email" type="email" class="pure-input-1-2" placeholder="Email (xxxxx@xxxxx.xxx)">
+            <input name="creditcard" type="text" class="pure-input-1-2" placeholder="Credit Card (xxxx-xxxx-xxxx-xxxx)">
+            <input name="password" type="text" class="pure-input-1-2" placeholder="Password">
+        </fieldset>
+        <button type="submit" class="button-success pure-button" name='transit'>
+            <i class="fa fa-key"></i><font class="logo"> Transit</font></button>
+        </button>
+        <button type="submit" class="button-warning pure-button" name='transformation'>
+            <i class="fa fa-exchange"></i><font class="logo"> Transform</font></button>
+        </button>
+    </form>
+</div>
+</div>
+
+<div class="ta0" style="margin:50px;">
+    <h2 class="logo">Encrypted by Transit</h2>
+    <table class="pure-table pure-table-striped table logo">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Credit Card</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <th:block th:each="eusers : ${eusers}">
+            <tr>
+                <td width="20%" th:text="${eusers.username}" />
+                <td width="20%" th:text="${eusers.email}" />
+                <td width="20%" th:text="${eusers.creditcard}" />
+                <td width="20%" th:text="${eusers.password}" />
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<div class="ta0" style="margin:50px;">
+<h2 class="logo">Encrypted by Transformation (Format Preserving Encryption)</h2>
+    <table class="pure-table pure-table-striped table logo">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Credit Card</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <th:block th:each="tusers : ${tusers}">
+            <tr>
+                <td width="20%" th:text="${tusers.username}" />
+                <td width="20%" th:text="${tusers.email}" />
+                <td width="20%" th:text="${tusers.creditcard}" />
+                <td width="20%" th:text="${tusers.password}" />
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<div class="ta0" style="margin:50px;">
+    <h2 class="logo">Row Data</h2>
+    <h3 class="logo">Coming Soon... </h3>
+</div>
+</body>
+</html>

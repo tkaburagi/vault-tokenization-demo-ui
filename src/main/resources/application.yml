@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: vault-tokenization-demoapp-ui
+server:
+  port: 7070
