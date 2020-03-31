@@ -30,6 +30,8 @@ public class UiController {
             howto = "transit";
         } else if (request.getParameter("transformation") != null) {
             howto = "transformation";
+        } else if (request.getParameter("simple-transformation") != null) {
+            howto = "simple-transformation";
         }
 
         System.out.println("DEBUG:" + howto);

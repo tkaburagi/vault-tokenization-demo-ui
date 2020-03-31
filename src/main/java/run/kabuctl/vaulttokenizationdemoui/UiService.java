@@ -62,10 +62,9 @@ public class UiService {
         input.put("email", email);
         input.put("creditcard", creditcard);
 
+        System.out.println("howto:" + howto);
 
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(input, headers);
-
-
 
         if (howto.equals("transit")) {
             targetUrl = UriComponentsBuilder.fromUriString("http://127.0.0.1:8080")
@@ -79,6 +78,15 @@ public class UiService {
         } else if (howto.equals("transformation")) {
             targetUrl = UriComponentsBuilder.fromUriString("http://127.0.0.1:8080")
                     .path("api/v1/transform/add-user")
+                    .queryParam("username", username)
+                    .queryParam("password", password)
+                    .queryParam("email", email)
+                    .queryParam("creditcard", creditcard)
+                    .build()
+                    .toString();
+        } else if (howto.equals("simple-transformation")) {
+            targetUrl = UriComponentsBuilder.fromUriString("http://127.0.0.1:8080")
+                    .path("api/v1/simple-transform/add-user")
                     .queryParam("username", username)
                     .queryParam("password", password)
                     .queryParam("email", email)

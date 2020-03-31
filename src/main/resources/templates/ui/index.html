@@ -27,23 +27,24 @@
             text-align: center;
         }
 
-        div.ta2 {
-            text-align: right;
-        }
-
-        div.ta3 {
-            text-align: justify;
-        }
-
         .logo {
             font-family: 'Nunito', sans-serif;
         }
 
-        .button-success, .button-warning {
+        .button-success {
             color: white;
             border-radius: 4px;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-            width: 200px;
+            width: 190px;
+            height: 85px;
+        }
+
+        .button-warning {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            width: 190px;
+            height: 40px;
         }
 
         .button-success {
@@ -53,6 +54,29 @@
 
         .button-warning {
             background: rgb(223, 117, 20); /* this is an orange */
+        }
+        ul {
+            width:400px;
+        }
+
+        ul li {
+            float:left;
+            width:200px;
+            margin-top: 5px;
+        }
+
+        .my-parts ul {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        .my-parts ul li a {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            color: #333;
+            text-align: left;
+            margin-top: 0px;
         }
 
     </style>
@@ -80,15 +104,27 @@
             <input name="creditcard" type="text" class="pure-input-1-2" placeholder="Credit Card (xxxx-xxxx-xxxx-xxxx)">
             <input name="password" type="text" class="pure-input-1-2" placeholder="Password">
         </fieldset>
-        <button type="submit" class="button-success pure-button" name='transit'>
-            <i class="fa fa-key"></i><font class="logo"> Transit</font></button>
-        </button>
-        <button type="submit" class="button-warning pure-button" name='transformation'>
-            <i class="fa fa-exchange"></i><font class="logo"> Transform</font></button>
-        </button>
+        <div class='my-parts'>
+            <ul>
+                <li>
+                    <button type="submit" class="button-success pure-button" name='transit'>
+                        <i class="fa fa-key"></i><font class="logo"> Transit</font></button>
+                </li>
+                <li>
+                    <button type="submit" class="button-warning pure-button" name='simple-transformation'>
+                        <i class="fa fa-exchange"></i><font class="logo"> Simple Transform</font></button>
+                </li>
+                <li>
+                    <button type="submit" class="button-warning pure-button" name='transformation'>
+                    <i class="fa fa-exchange"></i><font class="logo"> Transform</font></button>
+                </li>
+            </ul>
+        </div>
     </form>
 </div>
-</div>
+
+<br>
+<br>
 
 <div class="ta0" style="margin:50px;">
     <h2 class="logo">Encrypted by Transit</h2>
