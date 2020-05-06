@@ -3,24 +3,22 @@
 <head>
     <link rel="stylesheet"
           href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/cfad4d1391.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Nunito:700'
           rel='stylesheet' type='text/css' />
 
     <style type="text/css">
-        form {
-            margin: 0 auto;
-            width: 800px;
-        }
-
         table {
             width: 1500px;
         }
 
+
         div.ta0 {
             text-align: left;
             align-items: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
 
         div.ta1 {
@@ -36,7 +34,8 @@
             border-radius: 4px;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
             width: 190px;
-            height: 85px;
+            height: 40px;
+            background: rgb(28, 184, 65); /* this is a green */
         }
 
         .button-warning {
@@ -45,16 +44,27 @@
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
             width: 190px;
             height: 40px;
+            background: rgb(223, 117, 20); /* this is an orange */
         }
 
-        .button-success {
+        .button-table-1 {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            width: 60px;
+            height: 30px;
             background: rgb(28, 184, 65); /* this is a green */
         }
 
-
-        .button-warning {
+        .button-table-2 {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            width: 60px;
+            height: 30px;
             background: rgb(223, 117, 20); /* this is an orange */
         }
+
         ul {
             width:400px;
         }
@@ -111,6 +121,10 @@
                         <i class="fa fa-key"></i><font class="logo"> Transit</font></button>
                 </li>
                 <li>
+                    <button type="submit" class="button-warning pure-button" name='simplest-transformation'>
+                        <i class="fa fa-exchange"></i><font class="logo"> Simplest Transform</font></button>
+                </li>
+                <li>
                     <button type="submit" class="button-warning pure-button" name='simple-transformation'>
                         <i class="fa fa-exchange"></i><font class="logo"> Simple Transform</font></button>
                 </li>
@@ -131,6 +145,7 @@
     <table class="pure-table pure-table-striped table logo">
         <thead>
         <tr>
+            <th>Decrypt</th>
             <th>Username</th>
             <th>Email</th>
             <th>Credit Card</th>
@@ -139,20 +154,90 @@
         </thead>
         <th:block th:each="eusers : ${eusers}">
             <tr>
-                <td width="20%" th:text="${eusers.username}" />
-                <td width="20%" th:text="${eusers.email}" />
-                <td width="20%" th:text="${eusers.creditcard}" />
-                <td width="20%" th:text="${eusers.password}" />
+                <td width="10">
+                    <form class="pure-form" th:method="post" th:action="@{/decrypt}" th:object="${eusers}">
+                        <input type="hidden" name="username" th:value="${eusers.username}" />
+                        <button type="submit" class="button-table-1 pure-button" name='decrypt'>
+                            <i class="fas fa-angle-right"></i></button>
+                    </form>
+                </td>
+                <td th:text="${eusers.username}" />
+                <td th:text="${eusers.email}" />
+                <td th:text="${eusers.creditcard}" />
+                <td th:text="${eusers.password}" />
             </tr>
         </th:block>
     </table>
 </div>
 
 <div class="ta0" style="margin:50px;">
-<h2 class="logo">Encrypted by Transformation (Format Preserving Encryption)</h2>
+    <h2 class="logo">Simplest Encrypted by Transformation (Format Preserving Encryption)</h2>
     <table class="pure-table pure-table-striped table logo">
         <thead>
         <tr>
+            <th>Decode</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Credit Card</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <th:block th:each="stestusers : ${stestusers}">
+            <tr>
+                <td width="10">
+                    <form class="pure-form" th:method="post" th:action="@{/decode}" th:object="${stestusers}">
+                        <input type="hidden" name="username" th:value="${stestusers.username}" />
+                        <input type="hidden" name="flag" th:value="simplest-transformation" />
+                        <button type="submit" class="button-table-2 pure-button" name='decode' onclick=''>
+                            <i class="fas fa-angle-right"></i></button>
+                    </form>
+                </td>
+                <td th:text="${stestusers.username}" />
+                <td th:text="${stestusers.email}" />
+                <td th:text="${stestusers.creditcard}" />
+                <td th:text="${stestusers.password}" />
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<div class="ta0" style="margin:50px;">
+<h2 class="logo">Simply Encrypted by Transformation (Format Preserving Encryption)</h2>
+    <table class="pure-table pure-table-striped table logo">
+        <thead>
+        <tr>
+            <th>Decode</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Credit Card</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <th:block th:each="stusers : ${stusers}">
+            <tr>
+                <td width="10">
+                    <form class="pure-form" th:method="post" th:action="@{/decode}" th:object="${stusers}">
+                        <input type="hidden" name="username" th:value="${stusers.username}" />
+                        <input type="hidden" name="flag" th:value="simple-transformation" />
+                        <button type="submit" class="button-table-2 pure-button" name='decode' onclick=''>
+                            <i class="fas fa-angle-right"></i></button>
+                    </form>
+                </td>
+                <td th:text="${stusers.username}" />
+                <td th:text="${stusers.email}" />
+                <td th:text="${stusers.creditcard}" />
+                <td th:text="${stusers.password}" />
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+<div class="ta0" style="margin:50px;">
+    <h2 class="logo">Encrypted by Transformation (Format Preserving Encryption)</h2>
+    <table class="pure-table pure-table-striped table logo">
+        <thead>
+        <tr>
+            <th>Decode</th>
             <th>Username</th>
             <th>Email</th>
             <th>Credit Card</th>
@@ -161,18 +246,22 @@
         </thead>
         <th:block th:each="tusers : ${tusers}">
             <tr>
-                <td width="20%" th:text="${tusers.username}" />
-                <td width="20%" th:text="${tusers.email}" />
-                <td width="20%" th:text="${tusers.creditcard}" />
-                <td width="20%" th:text="${tusers.password}" />
+                <td width="10">
+                    <form class="pure-form" th:method="post" th:action="@{/decode}" th:object="${tusers}">
+                        <input type="hidden" name="username" th:value="${tusers.username}" />
+                        <input type="hidden" name="flag" th:value="transformation" />
+                        <button type="submit" class="button-table-2 pure-button" name='decode' onclick=''>
+                            <i class="fas fa-angle-right"></i></button>
+                    </form>
+                </td>
+                <td th:text="${tusers.username}" />
+                <td th:text="${tusers.email}" />
+                <td th:text="${tusers.creditcard}" />
+                <td th:text="${tusers.password}" />
             </tr>
         </th:block>
     </table>
 </div>
 
-<div class="ta0" style="margin:50px;">
-    <h2 class="logo">Row Data</h2>
-    <h3 class="logo">Coming Soon... </h3>
-</div>
 </body>
 </html>
